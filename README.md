@@ -3,8 +3,10 @@
 RL Swarm Plus is fork from RL Swarm↓ I try to improve my code to earn more rewards.The usage method is the same as that of RL Swarm.
 This will increase your reward by up to 300%!
 
-**Use methon** 
+**How to use** 
+
 (You must to install python 3.11 before use.)
+
 In the root of the repo,you can type these command in terminal.
 
 ```sh
