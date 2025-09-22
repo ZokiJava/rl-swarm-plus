@@ -3,6 +3,17 @@
 RL Swarm Plus is fork from RL Swarm↓ I try to improve my code to earn more rewards.The usage method is the same as that of RL Swarm.
 This will increase your reward by up to 300%!
 
+**Use methon** 
+(You must to install python 3.11 before use.)
+In the root of the repo,you can type these command in terminal.
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+./run_rl_swarm.sh
+```  
+
+
 ## RL Swarm Origin
 
 RL Swarm is a peer-to-peer system for reinforcement learning. It allows you to train models collaboratively with others in the swarm, leveraging their collective intelligence. It is open source and permissionless, meaning you can run it on a consumer laptop at home or on a powerful GPU in the cloud. You can also connect your model to the Gensyn Testnet to receive an on-chain identity that tracks your progress over time.
@@ -56,7 +67,7 @@ The easiest way to run RL Swarm is using Docker. This ensures a consistent setup
 #### 1. Clone this repo
 
 ```sh
-git clone https://github.com/gensyn-ai/rl-swarm
+git clone https://github.com/ZokiJava/rl-swarm-plus
 ```
 
 #### 2. Install Docker
