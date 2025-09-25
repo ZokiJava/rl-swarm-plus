@@ -234,14 +234,14 @@ echo_green ">> Done!"
 # 自动设置为不推送模型到Hugging Face Hub（无需用户输入）
 echo -en $GREEN_TEXT
  echo ">> Skipping Hugging Face Hub setup. Models will NOT be pushed to Hugging Face Hub."
- echo_yellow ">> 正在跳过hugging face hub设置。模型不会被推到hugging face hub。"
+ echo ">> 正在跳过hugging face hub设置。模型不会被推到hugging face hub。"
 echo -en $RESET_TEXT
 HUGGINGFACE_ACCESS_TOKEN="None"
 
 # 直接使用默认模型，无需用户输入
 echo -en $GREEN_TEXT
  echo ">> Using Qwen/Qwen3-0.6B model ,you can change it by using run_rl_swarm_customize.sh"
- echo_yellow ">> 正使用Qwen/Qwen3-0.6B 模型,你可以通过运行run_rl_swarm_customize.sh选择模型"
+ echo ">> 正在使用Qwen/Qwen3-0.6B 模型,你可以通过运行run_rl_swarm_customize.sh选择模型"
 echo -en $RESET_TEXT
 MODEL_NAME="Qwen/Qwen3-0.6B"
 
@@ -252,8 +252,8 @@ echo -en $RESET_TEXT
 PRG_GAME=true
 
 echo_green ">> Good luck in the swarm!"
-echo_yellow ">> And remember to view My Webside! --> https://zokigame.online"
-echo_yellow ">> 并记住要在 --> https://github.com/ZokiJava/rl-swarm-plus 上给我一个star"
+echo_blue ">> And remember to view My Webside! --> https://zokigame.online"
+echo ">> 并记住要在 --> https://github.com/ZokiJava/rl-swarm-plus 上给我一个star"
 echo_blue ">> And remember to star to repo in --> https://github.com/gensyn-ai/rl_swarm"
 
 

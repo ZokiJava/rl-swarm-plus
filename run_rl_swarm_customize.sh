@@ -53,7 +53,7 @@ GREEN_TEXT="\033[32m"
 BLUE_TEXT="\033[34m"
 RED_TEXT="\033[31m"
 RESET_TEXT="\033[0m"
-YELLOW_TEXT="\033[33m"
+
 
 #./auto_restart.sh
 
