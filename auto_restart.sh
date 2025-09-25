@@ -68,13 +68,22 @@ monitor_loop() {
     while true; do
         # 检查重启频率是否过高
         current_time=$(date +%s)
-        # 清理旧的重启记录
-        sed -i "/^[0-9]\+$/!d" "$RESTART_COUNT_FILE"  # 只保留数字行
+        # 创建临时文件来存储有效重启时间戳
+        temp_file="/tmp/${APP_NAME}_temp.txt"
+        > "$temp_file"
+        
+        # 读取重启计数文件并筛选出有效的时间戳
         while read -r timestamp; do
-            if (( current_time - timestamp > RESTART_WINDOW )); then
-                sed -i "/^$timestamp$/d" "$RESTART_COUNT_FILE"
+            if ! [[ "$timestamp" =~ ^[0-9]+$ ]]; then
+                continue  # 跳过非数字行
+            fi
+            if (( current_time - timestamp <= RESTART_WINDOW )); then
+                echo "$timestamp" >> "$temp_file"  # 只保留有效的时间戳
             fi
         done < "$RESTART_COUNT_FILE"
+        
+        # 将临时文件的内容写回重启计数文件
+        mv -f "$temp_file" "$RESTART_COUNT_FILE"
         
         # 计算最近重启次数
         restart_count=$(wc -l < "$RESTART_COUNT_FILE")
