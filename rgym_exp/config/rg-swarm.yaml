@@ -12,7 +12,7 @@ hydra:
 
 training:
   max_round: 1000000
-  max_stage: 3
+  max_stage: 1
   hf_push_frequency: 1
   num_generations: 2
   num_transplant_trees: 2
