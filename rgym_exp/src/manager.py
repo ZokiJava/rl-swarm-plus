@@ -87,7 +87,7 @@ class SwarmGameManager(BaseGameManager, DefaultGameManagerMixin):
 
         self.batched_signals = 0.0
         self.time_since_submit = time.time()  # seconds
-        self.submit_period = 0.1  # hours
+        self.submit_period = 0.05  # hours
         self.submitted_this_round = False
 
         # PRG Game
