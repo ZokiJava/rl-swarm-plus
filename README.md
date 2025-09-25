@@ -1,9 +1,9 @@
 # RL Swarm Plus
 
 RL Swarm Plus is fork from RL Swarm↓ I try to improve my code to earn more rewards.The usage method is the same as that of RL Swarm.
-This will increase your reward by up to 300%!
+This will increase your reward by up to 200~300%!
 
-**How to use** 
+*How to use* 
 
 (You must to install python 3.11 before use.)
 
@@ -15,6 +15,11 @@ source .venv/bin/activate
 ./run_rl_swarm.sh
 ```  
 
+*How to auto-restart* 
+
+```sh
+./auto_restart.sh
+``` 
 
 ## RL Swarm Origin
 
