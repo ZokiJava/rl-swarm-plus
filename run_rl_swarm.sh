@@ -291,11 +291,11 @@ run_main_program() {
         
         exit_status=$?
         
-        # 如果程序正常退出（状态码0）且不是在Docker环境中，则不重启
-        if [ $exit_status -eq 0 ] && [ -z "$DOCKER" ]; then
-            echo_green ">> Program exited normally. Not restarting."
-            break
-        fi
+        #如果程序正常退出（状态码0）且不是在Docker环境中，则不重启
+        # if [ $exit_status -eq 0 ] && [ -z "$DOCKER" ]; then
+        #     echo_green ">> Program exited normally. Not restarting."
+        #     break
+        # fi
         
         # 检查是否启用了自动重启
         if [ "$AUTO_RESTART" != "true" ]; then
