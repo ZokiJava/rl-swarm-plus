@@ -12,10 +12,10 @@ hydra:
 
 training:
   max_round: 1000000
-  max_stage: 2
-  hf_push_frequency: 2
-  num_generations: 4
-  num_transplant_trees: 3
+  max_stage: 3
+  hf_push_frequency: 1
+  num_generations: 2
+  num_transplant_trees: 2
   seed: 42
   dtype: 'float32'
 

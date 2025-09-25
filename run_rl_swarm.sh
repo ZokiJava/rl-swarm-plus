@@ -1,12 +1,28 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -uo pipefail
+
+# 添加一个选项来控制是否启用自动重启功能
+AUTO_RESTART=${AUTO_RESTART:-true}
+# 自动重启的最大次数（0表示无限重启）
+MAX_RESTART=${MAX_RESTART:-0}
+# 重启之间的延迟（秒）
+RESTART_DELAY=${RESTART_DELAY:-5}
+
+# 记录重启次数
+restart_count=0
 
 # General arguments
 ROOT=$PWD
 
 # GenRL Swarm version to use
 GENRL_TAG="0.1.6"
+# 添加一个选项来控制是否启用自动重启功能
+AUTO_RESTART=${AUTO_RESTART:-true}
+# 自动重启的最大次数（0表示无限重启）
+MAX_RESTART=${MAX_RESTART:-0}
+# 重启之间的延迟（秒）
+RESTART_DELAY=${RESTART_DELAY:-5}
 
 export IDENTITY_PATH
 export GENSYN_RESET_CONFIG
@@ -263,8 +279,43 @@ echo_green ">> Good luck in the swarm!"
 echo_green ">> And remember to view My Webside! --> https://zokigame.online"
 echo_blue ">> And remember to star to repo in --> https://github.com/gensyn-ai/rl_swarm"
 
-python -m rgym_exp.runner.swarm_launcher \
-    --config-path "$ROOT/rgym_exp/config" \
-    --config-name "rg-swarm.yaml" 
+# 定义运行主程序的函数，实现自动重启功能
+run_main_program() {
+    while true; do
+        echo_green ">> Starting rl-swarm program (attempt $((restart_count + 1)))..."
+        
+        # 运行主程序并捕获退出状态
+        python -m rgym_exp.runner.swarm_launcher \
+            --config-path "$ROOT/rgym_exp/config" \
+            --config-name "rg-swarm.yaml"
+        
+        exit_status=$?
+        
+        # 如果程序正常退出（状态码0）且不是在Docker环境中，则不重启
+        if [ $exit_status -eq 0 ] && [ -z "$DOCKER" ]; then
+            echo_green ">> Program exited normally. Not restarting."
+            break
+        fi
+        
+        # 检查是否启用了自动重启
+        if [ "$AUTO_RESTART" != "true" ]; then
+            echo_red ">> Program exited with status $exit_status. Auto-restart disabled."
+            break
+        fi
+        
+        # 检查是否超过了最大重启次数
+        if [ $MAX_RESTART -gt 0 ] && [ $restart_count -ge $MAX_RESTART ]; then
+            echo_red ">> Maximum restart attempts ($MAX_RESTART) reached."
+            break
+        fi
+        
+        # 记录重启次数
+        restart_count=$((restart_count + 1))
+        
+        echo_red ">> Program exited with status $exit_status. Restarting in $RESTART_DELAY seconds... (attempt $restart_count/$MAX_RESTART)"
+        sleep $RESTART_DELAY
+    done
+}
 
+run_main_program
 wait  # Keep script running until Ctrl+C
