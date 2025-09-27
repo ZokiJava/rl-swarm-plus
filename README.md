@@ -12,14 +12,14 @@ In the root of the repo,you can type these command in terminal.
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
-./run_rl_swarm.sh
+export PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 && ./run_rl_swarm_customize.sh
 ```  
 
-*How to auto-restart* 
+<!-- *How to auto-restart* 
 
 ```sh
 ./auto_restart.sh
-``` 
+```  -->
 
 ## RL Swarm Origin
 
